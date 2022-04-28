@@ -33,7 +33,7 @@ const food = () => {
 // a list of cats in alphabetical order - expected return value ["Bandit", "Berry", "Puss in boots", "Smokey"] of type Array
 
 const cat = () => {
-    return fetch("cats").then((value) => value.data.cats.sort());
+    return fetch("cats").then((value) => value.data.cats.sort())
 };
 
 // 3 Create a function that uses the fetch function to make a request to the "dogs" URL and returns
@@ -41,12 +41,13 @@ const cat = () => {
 
 const dog = () => {
     return fetch("dogs").then((value) => {
-        return value.data.dogs.reduce((prev, curr) => {
-            if (prev.naughty > curr.naughty) return prev;
-            return curr;
-        });
+        const arr = value.data.dogs;
+
+    arr.sort((a, b) => a.naughty - b.naughty);
+    return arr[arr.length - 1];
     });
-};
+    
+}
 
 // 4 Create a function that uses the fetch function to make requests to the "jokes" URL and returns
 // a joke object with the key of question and answer - expected return { 
